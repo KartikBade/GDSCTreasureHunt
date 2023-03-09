@@ -33,7 +33,7 @@ class HomeActivity : AppCompatActivity() {
         homeViewModel = ViewModelProvider(this)[HomeViewModel::class.java]
         userSharedPref = getSharedPreferences("userData", Context.MODE_PRIVATE)
         hintSharedPreferences = getSharedPreferences("hintData", Context.MODE_PRIVATE)
-        hintSharedPreferences.edit().clear().apply()
+//        hintSharedPreferences.edit().clear().apply()
 
         binding.tvTitleUsername.text = userSharedPref.getString("username", "Player")
 
@@ -42,6 +42,11 @@ class HomeActivity : AppCompatActivity() {
         var currentHintNumber = hintSharedPreferences.getInt("currentHintNumber", 0)
         if (currentHintNumber < 4) {
             binding.tvHint.text = currentHintList?.hintList?.get(currentHintNumber)
+        }
+        if (hintSharedPreferences.getBoolean("hasWon", false)) {
+            val intent = Intent(this, WinActivity::class.java)
+            startActivity(intent)
+            finish()
         }
 
         binding.btnSubmitCode.setOnClickListener {
@@ -55,18 +60,30 @@ class HomeActivity : AppCompatActivity() {
                     if (currentHintNumber < 4) {
                         binding.tvHint.text = currentHintList.hintList[currentHintNumber]
                     } else {
-                        Toast.makeText(this, "You Win!", Toast.LENGTH_LONG).show()
+                        hintSharedPreferences.edit().putBoolean("hasWon", true).apply()
                     }
-                    Snackbar.make(findViewById(android.R.id.content), "Correct Code -> $codeExpected", Snackbar.LENGTH_LONG)
+                    if (hintSharedPreferences.getBoolean("hasWon", false)) {
+                        val intent = Intent(this, WinActivity::class.java)
+                        startActivity(intent)
+                        finish()
+                    }
+                    Snackbar.make(findViewById(android.R.id.content), "Correct Code", Snackbar.LENGTH_LONG)
                         .setBackgroundTint(getColor(R.color.green)).show()
                 } else {
-                    Snackbar.make(findViewById(android.R.id.content), "Invalid Code -> $codeExpected", Snackbar.LENGTH_LONG)
+                    Snackbar.make(findViewById(android.R.id.content), "Invalid Code", Snackbar.LENGTH_LONG)
                         .setBackgroundTint(getColor(R.color.red)).show()
                 }
             } catch (e: java.lang.Exception) {
-                Snackbar.make(
-                    findViewById(android.R.id.content), "Invalid Code -> ${e.message}", Snackbar.LENGTH_LONG)
-                    .setBackgroundTint(getColor(R.color.red)).show()
+                if (hintSharedPreferences.getBoolean("hasWon", false)) {
+                    val intent = Intent(this, WinActivity::class.java)
+                    startActivity(intent)
+                    finish()
+                } else {
+                    Snackbar.make(
+                        findViewById(android.R.id.content), "Invalid Code -> ${e.message}", Snackbar.LENGTH_LONG)
+                        .setBackgroundTint(getColor(R.color.red)).show()
+                    Log.e("HomeActivity", e.message.toString())
+                }
             }
         }
     }
