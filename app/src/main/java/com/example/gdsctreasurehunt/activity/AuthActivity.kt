@@ -30,6 +30,12 @@ class AuthActivity : AppCompatActivity() {
             val userList = authViewModel.getUserData()
             authenticateUser(email, password, userList)
         }
+
+        binding.btnClearSharedPref.setOnClickListener {
+            val hintSharedPreferences = getSharedPreferences("hintData", Context.MODE_PRIVATE)
+            hintSharedPreferences.edit().clear().apply()
+            Toast.makeText(this, "Data Cleared", Toast.LENGTH_LONG).show()
+        }
     }
 
     private fun authenticateUser(email: String, password: String, userList: List<User>) {

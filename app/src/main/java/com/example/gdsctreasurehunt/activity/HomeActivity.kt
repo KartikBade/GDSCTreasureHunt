@@ -33,11 +33,11 @@ class HomeActivity : AppCompatActivity() {
         homeViewModel = ViewModelProvider(this)[HomeViewModel::class.java]
         userSharedPref = getSharedPreferences("userData", Context.MODE_PRIVATE)
         hintSharedPreferences = getSharedPreferences("hintData", Context.MODE_PRIVATE)
-//        hintSharedPreferences.edit().clear().apply()
 
         binding.tvTitleUsername.text = userSharedPref.getString("username", "Player")
 
         val currentUserEmail = userSharedPref.getString("email", null)
+        Log.e("HomeActivity", currentUserEmail.toString())
         val currentHintList = currentUserEmail?.let { getCurrentHintList(it) }
         var currentHintNumber = hintSharedPreferences.getInt("currentHintNumber", 0)
         if (currentHintNumber < 4) {
@@ -53,6 +53,7 @@ class HomeActivity : AppCompatActivity() {
             try {
                 val codeEntered = binding.etEnterCode.text.toString().toLong()
                 val codeExpected = currentHintList?.codeList?.get(currentHintNumber) ?: return@setOnClickListener
+                binding.etEnterCode.text?.clear()
 
                 if (codeEntered == codeExpected) {
                     hintSharedPreferences.edit().putInt("currentHintNumber", currentHintNumber + 1).apply()
@@ -121,6 +122,7 @@ class HomeActivity : AppCompatActivity() {
                 return@find false
             }
         }
+        Log.e("HomeActivity", currentHintList.email)
         return currentHintList
     }
 }
