@@ -14,8 +14,8 @@ import com.example.gdsctreasurehunt.viewmodel.AuthViewModel
 
 class AuthActivity : AppCompatActivity() {
 
-    private lateinit var authViewModel: AuthViewModel
     private lateinit var binding: ActivityAuthBinding
+    private lateinit var authViewModel: AuthViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,8 +41,8 @@ class AuthActivity : AppCompatActivity() {
             return
         }
 
-        val sharedPref = getSharedPreferences("userData", Context.MODE_PRIVATE)
-        val editor = sharedPref.edit()
+        val userSharedPref = getSharedPreferences("userData", Context.MODE_PRIVATE)
+        val editor = userSharedPref.edit()
         editor.apply {
             putString("username", currentUser.username)
             putString("email", currentUser.email)
