@@ -17,6 +17,8 @@ import com.example.gdsctreasurehunt.databinding.ActivityHomeBinding
 import com.example.gdsctreasurehunt.model.Hint
 import com.example.gdsctreasurehunt.viewmodel.HomeViewModel
 import com.google.android.material.snackbar.Snackbar
+import java.text.SimpleDateFormat
+import java.util.*
 
 class HomeActivity : AppCompatActivity() {
 
@@ -62,6 +64,9 @@ class HomeActivity : AppCompatActivity() {
                         binding.tvHint.text = currentHintList.hintList[currentHintNumber]
                     } else {
                         hintSharedPreferences.edit().putBoolean("hasWon", true).apply()
+                        val sdf = SimpleDateFormat("HH:mm:ss")
+                        val currentDateAndTime = sdf.format(Date())
+                        userSharedPref.edit().putString("timeCompleted", currentDateAndTime).apply()
                     }
                     if (hintSharedPreferences.getBoolean("hasWon", false)) {
                         val intent = Intent(this, WinActivity::class.java)

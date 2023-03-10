@@ -9,11 +9,27 @@
     <TextView
         android:id="@+id/tv_win_message"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Congratulations\nYou Win!"
-        android:textSize="30sp"
+        android:layout_height="wrap_content"
         android:gravity="center"
+        android:layout_marginBottom="30dp"
+        android:text="Congratulations\nYou Win!"
         android:textColor="@color/black"
-        android:textStyle="bold"/>
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_time_completed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_win_message"
+        tools:text="Time Completed: 10:30:44" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
