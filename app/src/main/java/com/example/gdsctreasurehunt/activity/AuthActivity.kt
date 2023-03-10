@@ -31,11 +31,14 @@ class AuthActivity : AppCompatActivity() {
             authenticateUser(email, password, userList)
         }
 
-        binding.btnClearSharedPref.setOnClickListener {
-            val hintSharedPreferences = getSharedPreferences("hintData", Context.MODE_PRIVATE)
-            hintSharedPreferences.edit().clear().apply()
-            Toast.makeText(this, "Data Cleared", Toast.LENGTH_LONG).show()
-        }
+//        binding.btnClearSharedPref.setOnClickListener {
+//            val hintSharedPreferences = getSharedPreferences("hintData", Context.MODE_PRIVATE)
+//            hintSharedPreferences.edit().apply {
+//                this.putBoolean("hasWon", false)
+//                apply()
+//            }
+//            Toast.makeText(this, "Data Cleared", Toast.LENGTH_LONG).show()
+//        }
     }
 
     private fun authenticateUser(email: String, password: String, userList: List<User>) {
@@ -43,11 +46,16 @@ class AuthActivity : AppCompatActivity() {
             email == it.email && password == it.password
         }
         if (currentUser == null) {
-            Toast.makeText(this, "User Doesn't Exist", Toast.LENGTH_LONG).show()
+            Toast.makeText(this, "Invalid Credentials", Toast.LENGTH_LONG).show()
             return
         }
 
         val userSharedPref = getSharedPreferences("userData", Context.MODE_PRIVATE)
+        val hintSharedPref = getSharedPreferences("hintData", Context.MODE_PRIVATE)
+
+        val currentHintNumber = userSharedPref.getInt(email, 0)
+        hintSharedPref.edit().putInt("currentHintNumber", currentHintNumber).apply()
+
         val editor = userSharedPref.edit()
         editor.apply {
             putString("username", currentUser.username)

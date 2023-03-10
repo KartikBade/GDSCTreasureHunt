@@ -6,7 +6,7 @@ import com.example.gdsctreasurehunt.model.User
 class AuthViewModel: ViewModel() {
 
     private val userList = listOf(
-        User("kartikbade19@gmail.com", "kartik", "Kartik Raje"),
+        User("kartikbade19@gmail.com", "kartik", "Kartik Bade"),
         User("dhananjaykuber@gmail.com", "dhananjay", "Kubrya"),
         User("sarveshjoshi@gmail.com", "sarvesh", "Joshi Bua"),
         User("nishantjoshi@gmail.com", "nishant", "Nishant Zavshi")

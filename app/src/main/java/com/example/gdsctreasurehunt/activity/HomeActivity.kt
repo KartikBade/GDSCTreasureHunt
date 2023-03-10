@@ -103,6 +103,7 @@ class HomeActivity : AppCompatActivity() {
         when (item.itemId) {
             R.id.logout -> {
                 userSharedPref.edit().apply {
+                    this.putInt(userSharedPref.getString("email", null), hintSharedPreferences.getInt("currentHintNumber", 0))
                     this.putString("username", null)
                     this.putString("email", null)
                     this.putBoolean("isLoggedIn", false)

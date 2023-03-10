@@ -24,28 +24,31 @@ class WinActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         userSharedPref = getSharedPreferences("userData", Context.MODE_PRIVATE)
-        binding.tvTimeCompleted.text = "Time Completed: ${ userSharedPref.getString("timeCompleted", null) }"
+
+        val userName = userSharedPref.getString("username", "Player")
+        binding.tvWinMessage.text = "Congratulations \n $userName"
+        binding.tvTimeCompleted.text = "Time: ${ userSharedPref.getString("timeCompleted", null) }"
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        MenuInflater(this).inflate(R.menu.menu_home, menu)
-        return true
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            R.id.logout -> {
-                userSharedPref.edit().apply {
-                    this.putString("username", null)
-                    this.putString("email", null)
-                    this.putBoolean("isLoggedIn", false)
-                    apply()
-                }
-                val intent = Intent(this, AuthActivity::class.java)
-                startActivity(intent)
-                finish()
-            }
-        }
-        return super.onOptionsItemSelected(item)
-    }
+//    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+//        MenuInflater(this).inflate(R.menu.menu_home, menu)
+//        return true
+//    }
+//
+//    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+//        when (item.itemId) {
+//            R.id.logout -> {
+//                userSharedPref.edit().apply {
+//                    this.putString("username", null)
+//                    this.putString("email", null)
+//                    this.putBoolean("isLoggedIn", false)
+//                    apply()
+//                }
+//                val intent = Intent(this, AuthActivity::class.java)
+//                startActivity(intent)
+//                finish()
+//            }
+//        }
+//        return super.onOptionsItemSelected(item)
+//    }
 }
