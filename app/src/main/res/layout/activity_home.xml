@@ -8,7 +8,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
         <TextView
             android:id="@+id/tv_greeting"
@@ -16,6 +16,8 @@
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
             android:text="Hi, "
+            android:fontFamily="sans-serif-light"
+            android:textColor="@color/grey_700"
             android:textSize="30sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -26,8 +28,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:text="Player"
+            android:fontFamily="sans-serif-medium"
+            android:textColor="@color/grey_900"
             android:textSize="30sp"
-            android:textStyle="bold"
             app:layout_constraintStart_toEndOf="@id/tv_greeting"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -36,10 +39,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="40dp"
             android:layout_marginBottom="30dp"
             android:layout_marginEnd="20dp"
-            android:elevation="8dp"
+            android:elevation="20dp"
             app:cardCornerRadius="20dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -56,8 +59,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Hint: "
+                    android:fontFamily="sans-serif-medium"
+                    android:textColor="@color/grey_900"
                     android:textSize="20sp"
-                    android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -65,8 +69,11 @@
                     android:id="@+id/tv_hint"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
                     android:textSize="20sp"
+                    android:layout_marginTop="4dp"
+                    android:fontFamily="sans-serif-medium"
+                    android:textStyle="italic"
+                    android:textColor="@color/grey_700"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="@id/tv_title_hint"
                     app:layout_constraintTop_toBottomOf="@id/tv_title_hint"
@@ -78,8 +85,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
                     android:text="Code: "
+                    android:fontFamily="sans-serif-medium"
+                    android:textColor="@color/grey_900"
                     android:textSize="20sp"
-                    android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tv_hint" />
@@ -107,11 +115,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
-                    android:background="@color/black"
+                    android:background="@drawable/view_border_background"
                     android:gravity="center"
                     android:padding="8dp"
                     android:text="Submit Code"
-                    android:textColor="@color/white"
+                    android:fontFamily="sans-serif-light"
+                    android:textColor="@color/grey_900"
                     android:textSize="20sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"

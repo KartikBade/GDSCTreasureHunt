@@ -26,8 +26,8 @@ class WinActivity : AppCompatActivity() {
         userSharedPref = getSharedPreferences("userData", Context.MODE_PRIVATE)
 
         val userName = userSharedPref.getString("username", "Player")
-        binding.tvWinMessage.text = "Congratulations \n $userName"
-        binding.tvTimeCompleted.text = "Time: ${ userSharedPref.getString("timeCompleted", null) }"
+        binding.tvPlayerName.text = "$userName"
+        binding.tvTimeCompleted.text = "Completed At: ${ userSharedPref.getString("timeCompleted", null) }"
     }
 
 //    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
